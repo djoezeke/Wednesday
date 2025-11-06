@@ -16,6 +16,8 @@ out/**/*.js.map
 scripts/
 src/
 screenshots/
+tests/
+bin/
 
 # Dev config files
 .eslintignore
@@ -23,4 +25,10 @@ screenshots/
 nodemon.json
 renovate.json
 **/tsconfig*.json
+jsconfig.json
+
+# Other Files
+.editorconfig
+.prettierrc.toml
+
 

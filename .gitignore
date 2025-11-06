@@ -24,3 +24,9 @@ flag.txt
 .fleet
 .idea
 *.iml
+
+# Others
+/tests/
+bin/
+/theme/
+screenshots/
