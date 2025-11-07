@@ -6,19 +6,32 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "Launch Theme",
+      "name": "Launch Wednesday Theme",
       "type": "extensionHost",
       "request": "launch",
+      "runtimeExecutable": "${execPath}",
+			"preLaunchTask": "npm: watch",
       "args": [
         "--disable-extensions",
-        "--extensionDevelopmentPath=${workspaceFolder}"
+        "--extensionDevelopmentPath=${workspaceFolder}",
+        "${file}"
+      ],
+      "outFiles": [
+        "${workspaceFolder}/out/*.(m|c|)js",
+        "!**/node_modules/**"
       ]
     },
     {
-      "name": "Launch Theme (with extensions)",
+      "name": "Launch Wednesday Theme (with extensions)",
       "type": "extensionHost",
       "request": "launch",
-      "args": ["--extensionDevelopmentPath=${workspaceFolder}"]
+      "runtimeExecutable": "${execPath}",
+			"preLaunchTask": "npm: watch",
+      "args": ["--extensionDevelopmentPath=${workspaceFolder}", "${file}"],
+      "outFiles": [
+        "${workspaceFolder}/out/*.(m|c|)js",
+        "!**/node_modules/**"
+      ]
     }
   ]
 }

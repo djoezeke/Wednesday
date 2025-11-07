@@ -1,18 +1,33 @@
 {
   "name": "theme-wednesday",
+  "icon": "images/icon.png",
   "displayName": "Wednesday Theme Official",
   "description": "The Official Wednesday Theme for Visual Studio Code",
   "version": "0.0.1",
   "homepage": "https://djoezeke.github.io/Wednesday/",
+  "publisher": "djoezeke",
+  "license": "MIT",
+  "scripts": {
+    "build:theme": "ts-node --project scripts/tsconfig.json scripts/generate-theme.ts",
+    "build:ts": "tsc -p src",
+    "build": "npm run build:sass && npm run build:theme && npm run build:ts",
+    "watch": "tsc -watch -p ./",
+    "pretest": "npm run build && npm run lint",
+    "lint": "eslint . --ext .ts",
+    "lint:fix": "eslint . --ext .ts --fix",
+    "package": "vsce package -o ./bin/wednesday.vsix",
+    "vscode:prepublish": "npm run build",
+    "vsce-publish": "vsce publish"
+  },
   "maintainers": [
-    "Sackey Ezekiel Etrue"
+    "Sackey Ezekiel Etrue (djoezeke)"
   ],
   "contributors": [
     "Sackey Ezekiel Etrue"
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/djoezeke/Wednesday"
+    "url": "https://github.com/djoezeke/Wednesday.git"
   },
   "bugs": {
     "url": "https://github.com/djoezeke/Wednesday/issues"
@@ -22,6 +37,10 @@
   },
   "categories": [
     "Themes"
+  ],
+  "extensionKind": [
+    "ui",
+    "workspace"
   ],
   "keywords": [
     "dark",
@@ -35,6 +54,8 @@
     "color": "#3c4557",
     "theme": "dark"
   },
+  "activationEvents": [],
+  "main": "./out/extension.js",
   "contributes": {
     "themes": [
       {
@@ -47,6 +68,86 @@
         "uiTheme": "vs-dark",
         "path": "./themes/Wednesday-Soft.json"
       }
-    ]
+    ],
+    "commands": [
+      {
+        "command": "Wednesday.setVivid",
+        "title": "%description.Wednesday.setVivid%",
+        "category": "Wednesday"
+      },
+      {
+        "command": "Wednesday.cancelVivid",
+        "title": "%description.Wednesday.cancelVivid%",
+        "category": "Wednesday"
+      },
+      {
+        "command": "Wednesday.setItalic",
+        "title": "%description.Wednesday.setItalic%",
+        "category": "Wednesday"
+      },
+      {
+        "command": "Wednesday.cancelItalic",
+        "title": "%description.Wednesday.cancelItalic%",
+        "category": "Wednesday"
+      },
+      {
+        "command": "Wednesday.setBold",
+        "title": "%description.Wednesday.setBold%",
+        "category": "Wednesday"
+      },
+      {
+        "command": "Wednesday.cancelBold",
+        "title": "%description.Wednesday.cancelBold%",
+        "category": "Wednesday"
+      }
+    ],
+    "configuration": {
+      "title": "Wednesday",
+      "properties": {
+        "Wednesday.editorTheme": {
+          "type": "string",
+          "default": "Wednesday",
+          "markdownDescription": "%description.Wednesday.editorTheme%",
+          "enum": [
+            "Wednesday",
+            "Wednesday Soft"
+          ]
+        },
+        "Wednesday.italic": {
+          "type": "boolean",
+          "default": true,
+          "description": "%description.Wednesday.italic%"
+        },
+        "Wednesday.bold": {
+          "type": "boolean",
+          "default": false,
+          "markdownDescription": "%description.Wednesday.bold%"
+        }
+      }
+    }
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.13.0",
+    "@vscode/vsce": "^2.15.0",
+    "@types/node": "^20.19.0",
+    "@types/vscode": "1.76.0",
+    "prettier": "^3.0.0",
+    "ts-node": "^10.9.2",
+    "eslint": "^9.39.1",
+    "util": "^0.12.5",
+    "typescript": "^5.8.2",
+    "typescript-eslint": "^8.26.0",
+    "@stylistic/eslint-plugin": "^2.9.0"
+  },
+  "capabilities": {
+    "untrustedWorkspaces": {
+      "supported": true
+    },
+    "virtualWorkspaces": true
+  },
+  "__metadata": {
+    "id": "",
+    "publisherDisplayName": "Ezekiel Sackey Etrue",
+    "publisherId": ""
   }
 }

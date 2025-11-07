@@ -1,0 +1,12 @@
+{
+  "files": [],
+  "references": [
+    {
+      "path": "./src"
+    },
+    {
+      "path": "./scripts"
+    }
+  ],
+  "exclude": ["node_modules"]
+}

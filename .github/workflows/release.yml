@@ -1,0 +1,47 @@
+name: Wednesday Release
+
+on:
+  push:
+    tags:
+      # Publish on any tag starting with a `v`, e.g., v1.2.3
+      - v*
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Wednesday
+        uses: actions/checkout@v5
+
+      - name: Setup/Install Nodes
+        uses: actions/setup-node@v4
+        with:
+          node-version: lts/*
+          cache: npm
+
+      - name: Install Wednesday Dependencies
+        run: npm install && mkdir -p ./bin
+
+      - name: Build Wednesday Distribution
+        run: npm run package
+
+      - name: Create Wednesday Realease
+        uses: actions/create-release@v1
+        id: create_release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ github.ref }}
+          release_name: ${{ github.ref }}
+          draft: true
+
+      - name: Upload Wednesday Distribution
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./bin/wednesday.vsix
+          asset_name: wednesday.vsix
+          asset_content_type: application/octet-stream

@@ -1,0 +1,13 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "preserveWatchOutput": true,
+    "resolveJsonModule": true,
+    "outDir": "../out",
+    "sourceMap": true,
+    "strict": false,
+    "target": "es6",
+    "rootDir": ".",
+    "noEmit": true
+  }
+}
