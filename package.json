@@ -8,10 +8,10 @@
   "publisher": "djoezeke",
   "license": "MIT",
   "scripts": {
-    "build:theme": "ts-node --project scripts/tsconfig.json scripts/generate-theme.ts",
+    "generate:theme": "ts-node --project scripts/tsconfig.json scripts/build.ts",
+    "build:theme": "npm run generate:theme",
     "build:ts": "tsc -p src",
-    "build": "npm run build:sass && npm run build:theme && npm run build:ts",
-    "watch": "tsc -watch -p ./",
+    "build": "npm run generate:theme && npm run build:ts",
     "pretest": "npm run build && npm run lint",
     "lint": "eslint . --ext .ts",
     "lint:fix": "eslint . --ext .ts --fix",
@@ -64,9 +64,9 @@
         "path": "./themes/Wednesday.json"
       },
       {
-        "label": "Wednesday Soft",
+        "label": "Wednesday Pro",
         "uiTheme": "vs-dark",
-        "path": "./themes/Wednesday-Soft.json"
+        "path": "./themes/Wednesday-Pro.json"
       }
     ],
     "commands": [
@@ -110,7 +110,7 @@
           "markdownDescription": "%description.Wednesday.editorTheme%",
           "enum": [
             "Wednesday",
-            "Wednesday Soft"
+            "Wednesday Pro"
           ]
         },
         "Wednesday.italic": {
